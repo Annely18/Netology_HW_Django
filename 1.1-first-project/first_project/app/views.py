@@ -35,10 +35,8 @@ def workdir_view(request):
     # который возвращает список файлов в рабочей 
     # директории
     base_path = os.getcwd()
-    print(base_path)
-    x = os.listdir(base_path)
-    msg = f'Cписок файлов: {x}'
+    file_list = os.listdir(base_path)
+    msg = f'Cписок файлов: {file_list}'
     # raise NotImplemented
-    return HttpResponse(msg) # => .ideaappdb.sqlite3first_projectmanage.pyREADME.mdrequirements.txtvenv
-                           # .idea app db.sqlite3 first_project manage.py README.md requirements.txt venv
+    return HttpResponse(msg)
 
