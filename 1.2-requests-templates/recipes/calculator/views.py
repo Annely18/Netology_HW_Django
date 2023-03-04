@@ -16,6 +16,12 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
+    'oatmeal_pancake': {
+        'яйца, шт': 1,
+        'молоко, ст.л': 2,
+        'овсяные хлопья, ст.л.': 3,
+        'соль, ч.л.': 0.5,
+    }
     # можете добавить свои рецепты ;)
 }
 
@@ -28,3 +34,14 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def cook_this(request, dish):
+    servings = int(request.GET.get('servings', 1))
+    context = {}
+    if dish in DATA:
+        recipe = {}
+        for ingredient, amount in DATA[dish].items():
+            recipe[ingredient] = amount*servings
+        context['recipe'] = recipe
+    return render(request, 'calculator/index.html', context)
+
